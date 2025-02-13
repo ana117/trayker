@@ -50,22 +50,29 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-col items-center justify-center gap-8 w-screen h-screen">
-      <button className="size-56 md:size-64 bg-gray-200 hover:bg-gray-400 rounded-full flex items-center justify-center duration-500" onClick={toggleTimer}>
-        <p className="text-4xl font-bold text-center text-background">
-          {parseTime(time)}
-        </p>
-      </button>
-      
-      {isOn ? (
-        <p className="text-xl md:text-2xl font-bold text-center text-red-500">
-          You are not wearing your aligner!
-        </p>
-      ) : (
-        <p className="text-2xl text-background">
-          -
-        </p>
-      )}
-    </main>
+    <div className="flex flex-col items-center justify-center w-screen h-screen bg-primary">
+      <main className="flex flex-col items-center justify-center gap-8 grow">
+        <button className="size-56 md:size-64 bg-gray-200 hover:bg-gray-400 rounded-full flex items-center justify-center duration-500" onClick={toggleTimer}>
+          <p className="text-4xl font-bold text-center text-background">
+            {parseTime(time)}
+          </p>
+        </button>
+        
+        {isOn ? (
+          <p className="text-xl md:text-2xl font-bold text-center text-red-500">
+            You are not wearing your aligner!
+          </p>
+        ) : (
+          <p className="text-2xl text-background">
+            -
+          </p>
+        )}
+      </main>
+      <footer className="flex items-center justify-center gap-4 p-8 w-full">
+        <a href="https://github.com/ana117/trayker" target="_blank" rel="noopener noreferrer" className="text-background hover:scale-110 duration-500">
+          <img src="/trayker.svg" alt="Trayker" className="size-8" />
+        </a>
+      </footer>
+    </div>
   );
 }
