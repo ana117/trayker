@@ -9,12 +9,30 @@ export default function Home() {
   
   const toggleTimer = () => {
     setIsOn(!isOn);
+    localStorage.setItem('trayker-date', new Date().toString());
   };
+
+  useEffect(() => {
+    const today = new Date();
+    const storedDate = localStorage.getItem('trayker-date');
+    const lastDate = storedDate ? new Date(storedDate) : today;
+
+    const storedTime = localStorage.getItem('trayker-time');
+    if (storedTime && lastDate.getDate() === today.getDate()) {
+      setTime(Number(storedTime));
+    } else {
+      localStorage.removeItem('trayker-date');
+      localStorage.removeItem('trayker-time');
+    }
+  }, []);
   
   useEffect(() => {
     if (isOn) {
       timerRef.current = setInterval(() => {
-        setTime((prev) => prev + 1);
+        setTime((prev) => {
+          localStorage.setItem('trayker-time', String(prev + 1));
+          return prev + 1;
+        });
       }, 1000);
     } else {
       clearInterval(timerRef.current as NodeJS.Timeout);
@@ -33,7 +51,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center gap-8 w-screen h-screen">
-      <button className="size-56 md:size-64 bg-gray-200 rounded-full flex items-center justify-center" onClick={toggleTimer}>
+      <button className="size-56 md:size-64 bg-gray-200 hover:bg-gray-400 rounded-full flex items-center justify-center duration-500" onClick={toggleTimer}>
         <p className="text-4xl font-bold text-center text-background">
           {parseTime(time)}
         </p>
