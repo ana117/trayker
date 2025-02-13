@@ -50,7 +50,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-screen h-screen bg-primary">
+    <div className="flex flex-col items-center justify-center w-dvh h-dvh bg-primary">
       <main className="flex flex-col items-center justify-center gap-8 grow">
         <button className="size-56 md:size-64 bg-gray-200 hover:bg-gray-400 rounded-full flex items-center justify-center duration-500" onClick={toggleTimer}>
           <p className="text-4xl font-bold text-center text-background">
@@ -68,8 +68,8 @@ export default function Home() {
           </p>
         )}
       </main>
-      <footer className="flex items-center justify-center gap-4 p-8 w-full">
-        <a href="https://github.com/ana117/trayker" target="_blank" rel="noopener noreferrer" className="text-background hover:scale-110 duration-500">
+      <footer className="absolute right-4 bottom-4 flex items-center justify-center gap-4 p-8">
+        <a href="https://github.com/ana117/trayker" target="_blank" rel="noopener noreferrer" className="text-background hover:scale-110 hover:bg-white/50 rounded-full p-2 duration-500">
           <img src="/trayker.svg" alt="Trayker" className="size-8" />
         </a>
       </footer>
